@@ -51,6 +51,10 @@
     {
       "name": "target_padding",
       "value": "16vp"
+    },
+    {
+      "name": "text_font",
+      "value": "12fp"
     }
   ]
 }
