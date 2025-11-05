@@ -15,6 +15,10 @@
     {
       "name": "main_blue",
       "value": "#007DFF"
+    },
+    {
+      "name": "button_background",
+      "value": "#E7E9EB"
     }
   ]
 }

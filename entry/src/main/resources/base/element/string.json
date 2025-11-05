@@ -31,6 +31,26 @@
     {
       "name": "latest_updateTime",
       "value": "更新时间"
+    },
+    {
+      "name": "cancel_button",
+      "value": "取消"
+    },
+    {
+      "name": "confirm_button",
+      "value": "确定"
+    },
+    {
+      "name": "edit_button",
+      "value": "编辑"
+    },
+    {
+      "name": "add_task",
+      "value": "添加子目标"
+    },
+    {
+      "name": "sub_goals",
+      "value": "子目标"
     }
   ]
 }

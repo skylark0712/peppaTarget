@@ -55,6 +55,22 @@
     {
       "name": "text_font",
       "value": "12fp"
+    },
+    {
+      "name": "slider_margin_left",
+      "value": "5vp"
+    },
+    {
+      "name": "secondary_title",
+      "value": "20fp"
+    },
+    {
+      "name": "operate_row_margin",
+      "value": "14vp"
+    },
+    {
+      "name": "list_margin_top",
+      "value": "10vp"
     }
   ]
 }
