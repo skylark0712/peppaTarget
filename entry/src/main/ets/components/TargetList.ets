@@ -1,9 +1,25 @@
 import CommonConstant from '../common/constant/CommonConstant'
+import AddTargetDialog from './AddTargetDialog'
 import TargetListItem from './TargetListItem'
 
 @Component
 export default struct TargetList {
   @Link arrData: Array<number>
+  onClickOk?: () => void
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: AddTargetDialog({
+      onClickOk: (value: string): void => this.saveTask(value)
+    }),
+    alignment: DialogAlignment.Bottom,
+    offset: {
+      dx: 0,
+      dy: -16
+    }
+  })
+
+  saveTask(value: string) {
+    console.log(value)
+  }
 
   @Builder
   targetItem() {
@@ -45,6 +61,9 @@ export default struct TargetList {
         .backgroundColor($r('app.color.button_background'))
         .margin({ top: '16vp' })
         .fontColor($r('app.color.main_blue'))
+        .onClick(() => {
+          this.dialogController.open()
+        })
     }
     .padding({ top: '14vp' })
     .width(CommonConstant.FULL_WIDTH)

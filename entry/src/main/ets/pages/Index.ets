@@ -5,7 +5,7 @@ import TargetList from '../components/TargetList'
 @Entry
 @Component
 struct Index {
-  @State arrData: Array<number> = [1, 2, 3, 4, 5]
+  @State arrData: Array<number> = []
 
   @Builder
   titleBar() {
