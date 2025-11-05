@@ -11,6 +11,26 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "title",
+      "value": "工作目标"
+    },
+    {
+      "name": "target_name",
+      "value": "第一季度运营目标"
+    },
+    {
+      "name": "target_info",
+      "value": "实现用户量与用户活跃度提升."
+    },
+    {
+      "name": "overall_progress",
+      "value": "整体进度"
+    },
+    {
+      "name": "latest_updateTime",
+      "value": "更新时间"
     }
   ]
 }

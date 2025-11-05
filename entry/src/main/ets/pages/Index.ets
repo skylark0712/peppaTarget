@@ -1,23 +1,34 @@
+import CommonConstant from '../common/constant/CommonConstant'
+import TargetInformation from '../components/TargetInformation'
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  @Builder
+  titleBar() {
+    Text($r('app.string.title'))
+      .height($r('app.float.title_height'))
+      .fontSize($r('app.float.title_font_size'))
+      .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
+      .textAlign(TextAlign.Start)
+      .width(CommonConstant.TITLE_WIDTH)
+      .margin({
+        top: $r('app.float.title_margin'),
+        bottom: $r('app.float.title_margin')
+      })
+  }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column() {
+      this.titleBar()
+      TargetInformation()
     }
-    .height('100%')
-    .width('100%')
+    .height(CommonConstant.FULL_HEIGHT)
+    .width(CommonConstant.FULL_WIDTH)
+    .padding({
+      left: $r('app.float.main_padding'),
+      right: $r('app.float.main_padding')
+    })
+    .backgroundColor($r('app.color.index_background'))
   }
 }
