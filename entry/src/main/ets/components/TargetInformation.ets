@@ -2,6 +2,10 @@ import CommonConstant from '../common/constant/CommonConstant'
 
 @Component
 export default struct TargetInformation {
+  @Prop totalTaskNum: number
+  @Prop latestUpdateDate: string
+  @Prop completedTaskNumber: number
+
   @Builder
   targetItem() {
     Row() {
@@ -33,7 +37,7 @@ export default struct TargetInformation {
           .fontColor($r('app.color.title_black_color'))
           .fontSize($r('app.float.button_font'))
           .fontWeight(CommonConstant.FONT_WEIGHT)
-        Text("更新时间: 2023/12/20 23:29.01")
+        Text(`更新时间：${this.latestUpdateDate}`)
           .fontSize('12fp')
           .fontWeight(CommonConstant.FONT_WEIGHT)
           .opacity(CommonConstant.OPACITY)
@@ -42,16 +46,16 @@ export default struct TargetInformation {
 
       Stack() {
         Row() {
-          Text('0')
+          Text(`${this.completedTaskNumber}`)
             .fontColor($r('app.color.main_blue'))
             .fontSize($r('app.float.progress_font'))
             .fontWeight(CommonConstant.FONT_WEIGHT)
-          Text('/1')
+          Text(`/${this.totalTaskNum}`)
             .fontSize($r('app.float.progress_font'))
             .fontWeight(CommonConstant.FONT_WEIGHT)
         }
 
-        Progress({ value: 1, total: 100, type: ProgressType.Ring })
+        Progress({ value: this.completedTaskNumber, total: this.totalTaskNum, type: ProgressType.Ring })
           .color($r('app.color.main_blue'))
           .style({ strokeWidth: CommonConstant.STROKE_WIDTH })
           .width($r('app.float.progress_length'))

@@ -1,10 +1,14 @@
 import CommonConstant from '../common/constant/CommonConstant'
+import getCurrentTime from '../common/utils/DateUtil'
+import IdGen from '../common/utils/IdGen'
+import Task from '../viewmodel/Task'
+import TaskDataService from '../viewmodel/TaskDataService'
 import AddTargetDialog from './AddTargetDialog'
 import TargetListItem from './TargetListItem'
 
 @Component
 export default struct TargetList {
-  @Link arrData: Array<number>
+  @Link arrData: Array<Task>
   onClickOk?: () => void
   dialogController: CustomDialogController = new CustomDialogController({
     builder: AddTargetDialog({ onClickOk: (value: string): void => this.saveTask(value) }),
@@ -13,7 +17,8 @@ export default struct TargetList {
   })
 
   saveTask(value: string) {
-    console.log(value)
+    TaskDataService.addData(new Task(IdGen.genId(), value, getCurrentTime(), 0))
+    this.arrData = TaskDataService.getData()
   }
 
   @Builder
@@ -37,11 +42,11 @@ export default struct TargetList {
     Column() {
       this.targetItem()
       List({ space: CommonConstant.LIST_SPACE }) {
-        ForEach(this.arrData, (item: number) => {
+        ForEach(this.arrData, (item: Task) => {
           ListItem() {
-            TargetListItem({ taskItem: item })
+            TargetListItem({ taskItem: item, latestUpdateDate: getCurrentTime() })
           }
-        }, (item: string) => item)
+        }, (item: string) => JSON.stringify(item))
       }
       .height(CommonConstant.LIST_HEIGHT)
       .width(CommonConstant.FULL_WIDTH)

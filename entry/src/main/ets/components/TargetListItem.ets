@@ -1,20 +1,22 @@
 import CommonConstant from "../common/constant/CommonConstant"
+import Task from "../viewmodel/Task"
 
 @Component
 export default struct TargetListItem {
-  taskItem?: number
+  taskItem?: Task
+  @Prop latestUpdateDate: string
 
   @Builder
   targetItem() {
     Row() {
-      Text(`${this.taskItem}`)
+      Text(`${this.taskItem?.taskName}`)
         .fontSize('16vp')
         .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
       Blank()
       Column() {
-        Text('0%')
+        Text(`${this.taskItem?.progressValue}%`)
           .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
-        Text('更新时间：2023/12/20 23:39:10')
+        Text(`更新时间：${this.latestUpdateDate}`)
           .fontSize($r('app.float.text_font'))
           .margin({ top: '3vp' })
           .opacity(0.4)
@@ -31,12 +33,15 @@ export default struct TargetListItem {
         Column() {
           Row() {
             Slider({
-              value: 1,
+              value: this.taskItem?.progressValue,
               min: CommonConstant.SLIDER_MIN_VALUE,
               max: CommonConstant.SLIDER_MAX_VALUE,
               step: CommonConstant.SLIDER_STEP,
               style: SliderStyle.InSet
             })
+              // .onChange((value: number) => {
+              //   this.taskItem?.progressValue = value
+              // })
               .width(CommonConstant.SLIDER_INNER_WIDTH)
             Text('0%')
               .fontSize($r("app.float.progress_font"))

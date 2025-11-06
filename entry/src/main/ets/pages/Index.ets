@@ -1,11 +1,25 @@
 import CommonConstant from '../common/constant/CommonConstant'
+import getCurrentTime from '../common/utils/DateUtil'
 import TargetInformation from '../components/TargetInformation'
 import TargetList from '../components/TargetList'
+import Task from '../viewmodel/Task'
+import TaskDataService from '../viewmodel/TaskDataService'
 
 @Entry
 @Component
 struct Index {
-  @State arrData: Array<number> = [1, 2]
+  @State @Watch('onProgressChanged') arrData: Array<Task> = TaskDataService.getData()
+  @State totalTaskNum: number = 0
+  @State latestUpdateDate: string = '-'
+  @State completedTaskNumber: number = 0
+
+  onProgressChanged() {
+    this.totalTaskNum = this.arrData.length
+    this.latestUpdateDate = getCurrentTime();
+    this.completedTaskNumber = this.arrData.filter((item: Task) => {
+      return item.progressValue === 100
+    }).length
+  }
 
   @Builder
   titleBar() {
@@ -21,7 +35,11 @@ struct Index {
   build() {
     Column() {
       this.titleBar()
-      TargetInformation()
+      TargetInformation({
+        totalTaskNum: this.totalTaskNum,
+        latestUpdateDate: this.latestUpdateDate,
+        completedTaskNumber: this.completedTaskNumber
+      })
       TargetList({ arrData: $arrData })
     }
     .backgroundColor($r('app.color.index_background'))
