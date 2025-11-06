@@ -2,7 +2,7 @@ import CommonConstant from "../common/constant/CommonConstant"
 
 @Component
 export default struct TargetListItem {
-  private taskItem?: number
+  taskItem?: number
 
   @Builder
   targetItem() {

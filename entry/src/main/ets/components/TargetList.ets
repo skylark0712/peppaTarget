@@ -44,6 +44,7 @@ export default struct TargetList {
         }, (item: string) => item)
       }
       .height(CommonConstant.LIST_HEIGHT)
+      .width(CommonConstant.FULL_WIDTH)
       .margin({ top: $r('app.float.list_margin_top') })
 
       Blank()
