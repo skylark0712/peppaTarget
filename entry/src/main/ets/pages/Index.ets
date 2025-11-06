@@ -27,7 +27,7 @@ struct Index {
       .fontSize($r('app.float.title_font_size'))
       .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
       .height($r('app.float.title_height'))
-      .margin({ top: $r('app.float.title_margin'), bottom: $r('app.float.title_margin') })
+      .margin({ bottom: $r('app.float.title_margin') })
       .textAlign(TextAlign.Start)
       .width(CommonConstant.TITLE_WIDTH)
   }
@@ -46,5 +46,6 @@ struct Index {
     .height(CommonConstant.FULL_HEIGHT)
     .padding({ left: $r('app.float.main_padding'), right: $r('app.float.main_padding') })
     .width(CommonConstant.FULL_WIDTH)
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }
 }

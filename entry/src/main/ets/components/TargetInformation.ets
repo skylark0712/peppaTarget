@@ -41,6 +41,7 @@ export default struct TargetInformation {
           .fontSize('12fp')
           .fontWeight(CommonConstant.FONT_WEIGHT)
           .opacity(CommonConstant.OPACITY)
+          .margin({ top: '5vp' })
       }
       .alignItems(HorizontalAlign.Start)
 

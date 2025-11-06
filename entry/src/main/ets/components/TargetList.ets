@@ -72,6 +72,6 @@ export default struct TargetList {
     }
     .padding({ top: '14vp' })
     .width(CommonConstant.FULL_WIDTH)
-    .height('55%')
+    .height('63%')
   }
 }
