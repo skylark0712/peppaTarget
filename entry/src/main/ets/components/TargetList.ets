@@ -11,9 +11,7 @@ export default struct TargetList {
   @Link arrData: Array<Task>
   onClickOk?: () => void
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: AddTargetDialog({ onClickOk: (value: string): void => this.saveTask(value) }),
-    alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: -16 }
+    builder: AddTargetDialog({ onClickOk: (value: string): void => this.saveTask(value) })
   })
 
   saveTask(value: string) {
@@ -33,6 +31,10 @@ export default struct TargetList {
         .fontColor($r('app.color.main_blue'))
         .fontSize($r('app.float.button_font'))
         .fontWeight(CommonConstant.FONT_WEIGHT)
+        .onClick(() => {
+          TaskDataService.deleteData()
+          this.arrData = TaskDataService.getData()
+        })
     }
     .padding({ left: $r('app.float.operate_row_margin'), right: $r('app.float.operate_row_margin') })
     .width(CommonConstant.FULL_WIDTH)

@@ -1,5 +1,4 @@
 import Task from "./Task";
-import { hilog } from "@kit.PerformanceAnalysisKit";
 
 export class TaskDataService {
   private targetData: Array<Task> = [];
@@ -13,11 +12,16 @@ export class TaskDataService {
     console.log(JSON.stringify(this.targetData) + '进来了')
   }
 
-  // 删除（根据id删除不会写，先全删了）
-  deleteData(ids: Array<number>) {
-    if (!ids) {
-      hilog.error(0xFF00, '[TaskDataService]', '删除数据没传')
-    }
+  // 删除（根据id删除不会写，先全删了，用下面这个清空）
+  // deleteData(ids: Array<number>) {
+  //   if (!ids) {
+  //     hilog.error(0xFF00, '[TaskDataService]', '删除数据没传')
+  //   }
+  //   this.targetData = []
+  // }
+
+  // 清空
+  deleteData() {
     this.targetData = []
   }
 
