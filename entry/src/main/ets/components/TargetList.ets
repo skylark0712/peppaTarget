@@ -44,7 +44,16 @@ export default struct TargetList {
       List({ space: CommonConstant.LIST_SPACE }) {
         ForEach(this.arrData, (item: Task) => {
           ListItem() {
-            TargetListItem({ taskItem: item, latestUpdateDate: getCurrentTime() })
+            TargetListItem({
+              taskItem: item, onClickOk: (progressValue: number) => {
+                TaskDataService.updateProgress(
+                  item.id,
+                  progressValue,
+                  getCurrentTime()
+                )
+                this.arrData = TaskDataService.getData()
+              }
+            })
           }
         }, (item: string) => JSON.stringify(item))
       }

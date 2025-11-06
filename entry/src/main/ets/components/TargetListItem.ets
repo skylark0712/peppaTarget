@@ -1,10 +1,22 @@
 import CommonConstant from "../common/constant/CommonConstant"
+import getCurrentTime from "../common/utils/DateUtil"
 import Task from "../viewmodel/Task"
 
 @Component
 export default struct TargetListItem {
   taskItem?: Task
-  @Prop latestUpdateDate: string
+  @State progressValue?: number = 0
+  @State lastsProgressValue?: number = 0
+  onClickOk: Function = (progress: number) => {
+  }
+  @State isExpanded: boolean = false
+  @State updateDate?: string = '-'
+
+  aboutToAppear() {
+    this.progressValue = this.taskItem?.progressValue
+    this.lastsProgressValue = this.taskItem?.progressValue
+    this.updateDate = this.taskItem?.updateDate
+  }
 
   @Builder
   targetItem() {
@@ -16,7 +28,7 @@ export default struct TargetListItem {
       Column() {
         Text(`${this.taskItem?.progressValue}%`)
           .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
-        Text(`更新时间：${this.latestUpdateDate}`)
+        Text(`更新时间：${this.updateDate}`)
           .fontSize($r('app.float.text_font'))
           .margin({ top: '3vp' })
           .opacity(0.4)
@@ -33,17 +45,17 @@ export default struct TargetListItem {
         Column() {
           Row() {
             Slider({
-              value: this.taskItem?.progressValue,
+              value: this.progressValue,
               min: CommonConstant.SLIDER_MIN_VALUE,
               max: CommonConstant.SLIDER_MAX_VALUE,
               step: CommonConstant.SLIDER_STEP,
               style: SliderStyle.InSet
             })
-              // .onChange((value: number) => {
-              //   this.taskItem?.progressValue = value
-              // })
+              .onChange((value: number) => {
+                this.progressValue = Math.floor(value)
+              })
               .width(CommonConstant.SLIDER_INNER_WIDTH)
-            Text('0%')
+            Text(`${this.progressValue}%`)
               .fontSize($r("app.float.progress_font"))
               .fontWeight(CommonConstant.FONT_WEIGHT)
               .margin({ left: $r('app.float.slider_margin_left') })
@@ -57,12 +69,30 @@ export default struct TargetListItem {
             Button($r('app.string.confirm_button'))
               .backgroundColor(Color.White)
               .fontColor($r('app.color.main_blue'))
+              .onClick(() => {
+                this.lastsProgressValue = this.progressValue
+                this.updateDate = getCurrentTime()
+                this.onClickOk(this.progressValue)
+                this.isExpanded = false
+              })
           }
           .justifyContent(FlexAlign.SpaceAround)
           .width(CommonConstant.FULL_WIDTH)
         }
+        .transition({
+          scale: {
+            x: 1,
+            y: 0
+          }
+        })
+
       }
     }
+    .onClick(() => {
+      animateToImmediately({ duration: 300 }, () => {
+        this.isExpanded = !this.isExpanded
+      })
+    })
     .backgroundColor(Color.White)
     .borderRadius('16vp')
     .padding('10vp')
