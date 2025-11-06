@@ -6,22 +6,22 @@ export default struct TargetInformation {
   targetItem() {
     Row() {
       Image($r('app.media.headerPic'))
-        .width($r('app.float.information_image'))
+        .borderRadius(CommonConstant.IMAGE_BORDER_RADIUS)
         .height($r('app.float.information_image'))
         .objectFit(ImageFit.Fill)
-        .borderRadius(CommonConstant.IMAGE_BORDER_RADIUS)
+        .width($r('app.float.information_image'))
       Column() {
         Text($r('app.string.target_name'))
           .fontSize($r('app.float.target_name_font'))
           .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
         Text($r('app.string.target_info'))
-          .opacity(0.4)
           .fontSize($r('app.float.target_desc_font'))
           .margin({ top: $r('app.float.title_margin') })
+          .opacity(0.4)
       }
-      .width(CommonConstant.FULL_WIDTH)
       .alignItems(HorizontalAlign.Start)
       .margin({ left: CommonConstant.TARGET_MARGIN_LEFT })
+      .width(CommonConstant.FULL_WIDTH)
     }
   }
 
@@ -30,43 +30,35 @@ export default struct TargetInformation {
     Row() {
       Column() {
         Text($r('app.string.overall_progress'))
-          .fontSize($r('app.float.button_font'))
           .fontColor($r('app.color.title_black_color'))
+          .fontSize($r('app.float.button_font'))
           .fontWeight(CommonConstant.FONT_WEIGHT)
         Text("更新时间: 2023/12/20 23:29.01")
-          .opacity(CommonConstant.OPACITY)
           .fontSize('12fp')
           .fontWeight(CommonConstant.FONT_WEIGHT)
+          .opacity(CommonConstant.OPACITY)
       }
       .alignItems(HorizontalAlign.Start)
 
       Stack() {
         Row() {
           Text('0')
+            .fontColor($r('app.color.main_blue'))
             .fontSize($r('app.float.progress_font'))
             .fontWeight(CommonConstant.FONT_WEIGHT)
-            .fontColor($r('app.color.main_blue'))
           Text('/1')
             .fontSize($r('app.float.progress_font'))
             .fontWeight(CommonConstant.FONT_WEIGHT)
         }
-
-        Progress({
-          value: 1,
-          total: 100,
-          type: ProgressType.Ring
-        })
+        Progress({ value: 1, total: 100, type: ProgressType.Ring })
           .color($r('app.color.main_blue'))
-          .style({
-            strokeWidth: CommonConstant.STROKE_WIDTH
-          })
-          .width($r('app.float.progress_length'))
+          .style({ strokeWidth: CommonConstant.STROKE_WIDTH })
           .width($r('app.float.progress_length'))
       }
     }
+    .justifyContent(FlexAlign.SpaceBetween)
     .margin({ top: $r('app.float.progress_margin_top') })
     .width(CommonConstant.FULL_WIDTH)
-    .justifyContent(FlexAlign.SpaceBetween)
   }
 
   build() {

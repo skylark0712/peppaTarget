@@ -15,11 +15,13 @@ export default struct TargetListItem {
         Text('0%')
           .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
         Text('更新时间：2023/12/20 23:39:10')
-          .opacity(0.4)
           .fontSize($r('app.float.text_font'))
           .margin({ top: '3vp' })
-      }.alignItems(HorizontalAlign.End)
-    }.width(CommonConstant.FULL_WIDTH)
+          .opacity(0.4)
+      }
+      .alignItems(HorizontalAlign.End)
+    }
+    .width(CommonConstant.FULL_WIDTH)
   }
 
   build() {
@@ -36,31 +38,28 @@ export default struct TargetListItem {
               style: SliderStyle.InSet
             })
               .width(CommonConstant.SLIDER_INNER_WIDTH)
-
             Text('0%')
               .fontSize($r("app.float.progress_font"))
               .fontWeight(CommonConstant.FONT_WEIGHT)
-              .textAlign(TextAlign.Center)
               .margin({ left: $r('app.float.slider_margin_left') })
+              .textAlign(TextAlign.Center)
           }
-
           Row() {
             Button($r('app.string.cancel_button'))
-              .fontColor($r('app.color.main_blue'))
               .backgroundColor(Color.White)
+              .fontColor($r('app.color.main_blue'))
             Button($r('app.string.confirm_button'))
-              .fontColor($r('app.color.main_blue'))
               .backgroundColor(Color.White)
+              .fontColor($r('app.color.main_blue'))
           }
           .justifyContent(FlexAlign.SpaceAround)
           .width(CommonConstant.FULL_WIDTH)
         }
-
       }
     }
-    .width(CommonConstant.FULL_WIDTH)
+    .backgroundColor(Color.White)
     .borderRadius('16vp')
     .padding('10vp')
-    .backgroundColor(Color.White)
+    .width(CommonConstant.FULL_WIDTH)
   }
 }

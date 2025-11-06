@@ -7,14 +7,9 @@ export default struct TargetList {
   @Link arrData: Array<number>
   onClickOk?: () => void
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: AddTargetDialog({
-      onClickOk: (value: string): void => this.saveTask(value)
-    }),
+    builder: AddTargetDialog({ onClickOk: (value: string): void => this.saveTask(value) }),
     alignment: DialogAlignment.Bottom,
-    offset: {
-      dx: 0,
-      dy: -16
-    }
+    offset: { dx: 0, dy: -16 }
   })
 
   saveTask(value: string) {
@@ -25,8 +20,8 @@ export default struct TargetList {
   targetItem() {
     Row() {
       Text($r('app.string.sub_goals'))
-        .fontSize($r('app.float.secondary_title'))
         .fontColor($r('app.color.title_black_color'))
+        .fontSize($r('app.float.secondary_title'))
         .fontWeight(CommonConstant.FONT_WEIGHT_LARGE)
       Blank()
       Text($r('app.string.edit_button'))
@@ -34,10 +29,7 @@ export default struct TargetList {
         .fontSize($r('app.float.button_font'))
         .fontWeight(CommonConstant.FONT_WEIGHT)
     }
-    .padding({
-      left: $r('app.float.operate_row_margin'),
-      right: $r('app.float.operate_row_margin')
-    })
+    .padding({ left: $r('app.float.operate_row_margin'), right: $r('app.float.operate_row_margin') })
     .width(CommonConstant.FULL_WIDTH)
   }
 
@@ -47,9 +39,7 @@ export default struct TargetList {
       List({ space: CommonConstant.LIST_SPACE }) {
         ForEach(this.arrData, (item: number) => {
           ListItem() {
-            TargetListItem({
-              taskItem: item
-            })
+            TargetListItem({ taskItem: item })
           }
         }, (item: string) => item)
       }
@@ -59,8 +49,8 @@ export default struct TargetList {
       Blank()
       Button($r('app.string.add_task'))
         .backgroundColor($r('app.color.button_background'))
-        .margin({ top: '16vp' })
         .fontColor($r('app.color.main_blue'))
+        .margin({ top: '16vp' })
         .onClick(() => {
           this.dialogController.open()
         })
