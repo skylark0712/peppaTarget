@@ -44,6 +44,7 @@ export default struct TargetListItem {
               .margin({ left: $r('app.float.slider_margin_left') })
               .textAlign(TextAlign.Center)
           }
+
           Row() {
             Button($r('app.string.cancel_button'))
               .backgroundColor(Color.White)

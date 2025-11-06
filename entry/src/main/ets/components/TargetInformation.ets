@@ -50,6 +50,7 @@ export default struct TargetInformation {
             .fontSize($r('app.float.progress_font'))
             .fontWeight(CommonConstant.FONT_WEIGHT)
         }
+
         Progress({ value: 1, total: 100, type: ProgressType.Ring })
           .color($r('app.color.main_blue'))
           .style({ strokeWidth: CommonConstant.STROKE_WIDTH })
